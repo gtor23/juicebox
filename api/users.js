@@ -2,7 +2,7 @@ const express = require('express');
 const usersRouter = express.Router();
 const {getUserByUsername} = require('../db')
 const {createUser} = require('../db')
-
+const {getAllUsers} = require('../db')
 const jwt = require('jsonwebtoken');
 
 usersRouter.use((req, res, next) => {
@@ -13,7 +13,7 @@ usersRouter.use((req, res, next) => {
   next();
 });
 
-const {getAllUsers} = require('../db')
+
 
 usersRouter.get('/', async(req, res) => {
 
@@ -28,6 +28,8 @@ usersRouter.get('/', async(req, res) => {
 
   usersRouter.post('/login', async (req, res, next) => {
     const { username, password } = req.body;
+
+    // console.log('here---', username);
   
     // request must have both
     if (!username || !password) {
