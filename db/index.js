@@ -2,7 +2,7 @@
 const {Client} = require('pg')
 
 //Add connection string to client
-const client = new Client('postgres://localhost:5432/juicebox-dev')
+const client = new Client(process.env.DATABASE_URL ||'postgres://localhost:5432/juicebox-dev')
 
 async function getAllUsers(){
     const {rows} = await client.query(`SELECT * FROM users`)
